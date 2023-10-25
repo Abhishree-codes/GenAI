@@ -1,6 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 const OpenAI = require("openai");
+
 const app = express();
 const cors = require("cors");
 app.use(express.json());
@@ -21,7 +22,7 @@ const generateContent = async(topic,type,textToTranslate="")=>{
   try {
     let prompt= ""
     if(type==="generate"){
-       prompt= `Produce engaging, human-like text on the topic of ${topic}`;
+       prompt= `Produce engaging, human-like text on the topic of ${topic}.Limit to one paragraph.`;
     }else if(type==="translate"){
         prompt=`Translate this text to ${topic}: "${textToTranslate}"`;
     }else if(type==="summary"){
