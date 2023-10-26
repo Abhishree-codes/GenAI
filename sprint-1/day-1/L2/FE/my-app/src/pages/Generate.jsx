@@ -7,8 +7,8 @@ function Generate() {
   const [topic,setTopic] = useState("")
   const [generatedText,setGeneratedText] = useState("")
   const[loading,setLoading] = useState(false)
-  const baseServerURL = "http://localhost:8080"
-
+  //const baseServerURL = "http://localhost:8080"
+  const baseServerURL="https://content-gen-api-two.vercel.app"
   const handleNew=()=>{
     axios.get(`${baseServerURL}/new`).then((res)=>{
       setGeneratedText("")

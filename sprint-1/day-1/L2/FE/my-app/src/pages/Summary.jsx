@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 import NavBar from '../components/NavBar';
 
 function Summary() {
-    const baseServerURL = "http://localhost:8080"
+  const baseServerURL="https://content-gen-api-two.vercel.app"
+    //const baseServerURL = "http://localhost:8080"
     const[loading,setLoading] = useState(false)
   const [fileContents, setFileContents] = useState([]);
   const [inpText,setInpText] = useState("")

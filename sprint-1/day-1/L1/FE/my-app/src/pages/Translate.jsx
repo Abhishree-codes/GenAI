@@ -7,7 +7,7 @@ function Translate() {
     const [generatedText,setGeneratedText] = useState("")
     const[loading,setLoading] = useState(false)
     const [ lang, selectedLang] = useState("English")
-    const baseServerURL = "http://localhost:8081"
+    const baseServerURL="https://content-gen-one-api.vercel.app"
   
     const handleTranslate = ()=>{
       setLoading(true)

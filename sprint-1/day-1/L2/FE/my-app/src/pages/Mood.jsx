@@ -6,7 +6,8 @@ import axios from "axios"
 import NavBar from '../components/NavBar';
 
 function Mood() {
-    const baseServerURL = "http://localhost:8080"
+    const baseServerURL="https://content-gen-api-two.vercel.app"
+    //const baseServerURL = "http://localhost:8080"
     const [responseText, setResponseText] = useState("")
 
     const [loading, setIsLoading] = useState(false);
