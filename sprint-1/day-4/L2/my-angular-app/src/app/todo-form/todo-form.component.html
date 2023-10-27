@@ -1,0 +1,14 @@
+<div id="formCont">
+    <h1>Add Task</h1>
+<form (ngSubmit)="onSubmit($event)">
+    <input type="text" [(ngModel)]="newTask.title" name="title" placeholder="add title" />
+    <input type="text" [(ngModel)]="newTask.description" name="description" placeholder="add description"/>
+    <select [ngModel]="selectedPriority" (ngModelChange)="setPriority($event)" name="priority">
+        <option value="">select Priority</option>
+        <option value="High">High</option>
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+    </select>
+    <button type="submit">Submit</button>
+</form>
+</div>

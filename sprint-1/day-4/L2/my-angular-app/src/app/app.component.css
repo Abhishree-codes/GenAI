@@ -1,0 +1,193 @@
+
+
+
+  
+body{
+    box-sizing: border-box;
+}
+#header{
+    height: 50px;
+
+    background-color: 		#c8a2c8;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  
+    padding: 10px;
+
+    width: 100%;
+
+}
+h1{
+    margin: auto;
+}
+
+
+body{
+    min-height: 450px;
+    position: relative;
+ }
+ svg#one {
+     position: absolute;
+     -webkit-transform: translate(50%, 141%);
+     transform: translate(250%, -20%);
+ }
+ svg#two {
+     position: absolute;
+     -webkit-transform: translate(570%, 1210%);
+     transform: translate(1000%, 20%);
+ }
+ svg#three {
+     position: absolute;
+     -webkit-transform: translate(600%, 250%);
+     transform: translate(1300%, -20%);
+ }
+ .group {
+     -webkit-transform: translate(42.5px,42.5px);
+     -moz-transform: translate(42.5px,42.5px);
+     transform: translate(42.5px, 42.5px);
+ }
+ path {
+     -webkit-transform: translate(-42.50px,-42.50px);
+     -moz-transform: translate(-42.50px,-42.50px);
+     transform: translate(-42.50px,-42.50px);
+ }
+ .large {
+     -webkit-animation: large 2.5s infinite;
+     -moz-animation: large 2.5s infinite;
+     animation: large 2.5s infinite; 
+ }
+ .large-2 {
+     -webkit-animation: large-2 2.5s infinite;
+     -moz-animation: large-2 2.5s infinite;
+     animation: large-2 2.5s infinite; 
+ }
+ .small {
+     -webkit-animation: small 2.5s infinite;
+     -moz-animation: small 2.5s infinite;
+     animation: small 2.5s infinite; 
+ }
+ @-webkit-keyframes large {
+     0% {
+         opacity: 0;
+         -webkit-transform: rotate(0deg) scale(0);
+         transform: rotate(0deg) scale(0);
+     }
+     50% {
+         opacity: 1;
+     }
+     100% {
+         opacity: 0;
+         -webkit-transform: rotate(360deg) scale(1.5);
+         transform: rotate(360deg) scale(1.5);
+     }
+ }
+ @keyframes large {
+    0% {
+      opacity: 0;
+      transform: rotate(0deg) scale(0);
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: rotate(360deg) scale(1.5);
+    }
+  }
+ @-moz-keyframes large {
+     0% {
+         opacity: 0;
+         transform: rotate(0deg) scale(0);
+     }
+     50% {
+         opacity: 1;
+     }
+     100% {
+         opacity: 0;
+         transform: rotate(360deg) scale(1.5);
+     }
+ }
+ @-webkit-keyframes large-2 {
+     0% {
+         opacity: 0;
+         -webkit-transform: rotate(45deg) scale(0);
+         transform: rotate(45deg) scale(0);
+     }
+     50% {
+         opacity: 1;
+     }
+     100% {
+         opacity: 0;
+         -webkit-transform: rotate(405deg) scale(1.1);
+         transform: rotate(405deg) scale(1.1);
+     }
+ }
+ @keyframes large-2 {
+    0% {
+        opacity: 0;
+        -webkit-transform: rotate(45deg) scale(0);
+        transform: rotate(45deg) scale(0);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: rotate(405deg) scale(1.1);
+        transform: rotate(405deg) scale(1.1);
+    }
+}
+ @-moz-keyframes large-2 {
+     0% {
+         opacity: 0;
+         transform: rotate(45deg) scale(0);
+     }
+     50% {
+         opacity: 1;
+     }
+     100% {
+         opacity: 0;
+         transform: rotate(405deg) scale(1.1);
+     }
+ }
+ @-webkit-keyframes small {
+     0% {
+         opacity: 0;
+         -webkit-transform: rotate(0deg) scale(0);
+         transform: rotate(0deg) scale(0);
+     }
+     50% {
+         opacity: 1;
+     }
+     100% {
+         opacity: 0;
+         -webkit-transform: rotate(-360deg) scale(1);
+         transform: rotate(-360deg) scale(1.5);
+     }
+ }
+ @keyframes small {
+    0% {
+        opacity: 0;
+        -webkit-transform: rotate(0deg) scale(0);
+        transform: rotate(0deg) scale(0);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: rotate(-360deg) scale(1);
+        transform: rotate(-360deg) scale(1.5);
+    }
+}
+ @-moz-keyframes small {
+     0% {
+         opacity: 0;
+         transform: rotate(0deg) scale(0);
+     }
+     50% {
+         opacity: 1;
+     }
+     100% {
+         opacity: 0;
+         transform: rotate(-360deg) scale(1.5);
+     }
+ }

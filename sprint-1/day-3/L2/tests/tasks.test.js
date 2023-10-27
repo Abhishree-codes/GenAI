@@ -31,3 +31,4 @@ describe("Task Class", () => {
         expect(task.isCompleted).toBe(true);
     });
 });
+

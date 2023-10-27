@@ -1,0 +1,51 @@
+<div id="container">
+  
+    <select style="border-radius: 5px; padding: 5px; margin-right: 10px; height: 30px;" [ngModel]="selectedValue" (ngModelChange)="implementFilter($event)" name="beyonce">
+        <option value="">Select Status</option>
+        <option value="true">Completed</option>
+        <option value="false">Not Completed</option>
+      </select>
+      <select style="border-radius: 5px; padding: 5px; margin-right: 10px; height: 31px;" [ngModel]="selectedPriorityFilterValue" (ngModelChange)="implementPriorityFilter($event)" name="filterPriority">
+        <option value="">select Priority</option>
+        <option value="High">High</option>
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+      </select>
+      <div id="tableCont">
+   <table id="tasks">
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Completed</th>
+      <th>Priority</th>
+      <th>Mark</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    <tr *ngFor="let task of tasks">
+      <td> {{ task.title }}</td>
+        <td>{{ task.description }} </td>
+        <td> {{task.completed ? "yes":"no"}} </td>
+
+        <td>Priority -{{task.priority}}</td>
+        <td><button (click) = "markDone(task.id)">Mark as completed</button></td>
+        <td><button (click) = "editTask(task)">Edit Details</button></td>
+       <td> <button (click)="deleteTaskFromlist(task.id)">Delete Task</button></td>
+    </tr>
+   </table>
+  </div>
+</div>
+<div id="formCont" *ngIf="editingTask.id!==''">
+  <h1>Edit Task</h1>
+    <form (ngSubmit)="onEditSubmit($event)">
+        <input type="text" [(ngModel)]="editingTask.title" name="title" />
+        <input type="text" [(ngModel)]="editingTask.description" name="description" />
+        <select [ngModel]="editingTask.priority" (ngModelChange)="setEditedPriority($event)" name="editedPriority">
+            <option value="">select Priority</option>
+            <option value="High">High</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+        </select>
+        <button type="submit">Save</button>
+      </form>
+</div>

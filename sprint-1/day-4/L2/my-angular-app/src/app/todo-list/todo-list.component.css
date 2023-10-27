@@ -1,0 +1,94 @@
+#tasks {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #tasks td, #tasks th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #tasks tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #tasks tr:hover {background-color: #ddd;}
+  
+  #tasks th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: 	#c8a2c8;
+    color: white;
+  }
+  #container{
+    padding: 20px;
+  }
+  #tableCont{
+    padding:20px
+  }
+  button{
+    border-radius: 5px;
+    border: 1px solid transparent;
+    background-color: 	#c8a2c8;
+    color: white;
+    padding: 5px;
+    font-weight: bold;
+  }
+  button:hover{
+    cursor: pointer;
+    background-color: 	#946194;
+  }
+  #formCont{
+    width: 50%;
+    margin: auto;
+    width: 400px;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    background-color: 	#f0dff0;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   margin-bottom: 10px;
+}
+form{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+form input{
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid grey;
+}
+
+select{
+    border-radius: 5px;
+    padding: 5px;
+}
+
+form>button{
+ 
+    border: 1px solid transparent;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    background-color: 	#c8a2c8;
+    color: white;
+    padding: 10px;
+   
+    font-weight: bold;
+    width: 70%;
+    margin: auto;
+    margin-top: 10px;
+
+
+}
+form >button:hover{
+  cursor: pointer;
+  background-color: 	#ac71ac;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
