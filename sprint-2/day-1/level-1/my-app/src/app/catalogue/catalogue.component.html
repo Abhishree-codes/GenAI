@@ -1,0 +1,56 @@
+<div>
+    <select [ngModel] = "selectedName" (ngModelChange)="sortByName($event)" name="sortbyname">
+        <option value="">Sort By Name</option>
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+    </select>
+    <select [ngModel]="selectedPrice" (ngModelChange)="sortByPrice($event)" name="sortbyprice">
+        <option value="">Sort By Price</option>
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+    </select>
+    <select [ngModel]="selectedCategory" (ngModelChange)="filterByCategory($event)" name="filter">
+        <option value="">Filter By Category</option>
+        <option value="men's clothing">Men's clothing</option>
+        <option value="women's clothing">Women's clothing</option>
+        <option value="jewellery">Jewellery</option>
+        <option value="electronics">Electronics</option>
+    </select>
+</div>
+<div *ngFor="let product of products">
+<div style="width: 100%;">
+    <img style="width: 100px; height: 100px;" [src]="product.image"/>
+<h1>Name: {{product.title}}</h1>
+<div>
+<button type="button" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900" (click)="!product.fav? addToFav(product.id): removeFromFav(product.id)" >{{product.fav? "Remove from favourites":"Add to favourites"}}</button>
+</div>
+<div>
+<button type="button" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900" (click) = "!product.cart ? addToCart(product.id): removeFromCart(product.id)">{{product.cart?"Remove from cart":"Add to cart"}}</button>
+</div>
+<!-- <button [hidden]="product.fav" (click) = "removeFromFav(product.id)">Remove from Fav</button>
+<button [hidden] ="!product.fav" (click) = "addToFav(product.id)">Add to Fav</button> -->
+
+
+<!-- Modal toggle -->
+
+<button (click)="openModal(product)" id="myBtn">Open Modal</button>
+
+<!-- The Modal -->
+<div id="myModal" [hidden]="!modalVisible" class="modal" >
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <button  (click)="closeModal()" class="close">Close</button>
+    <img style="width: 100px; height: 100px;" [src]="selectedProduct?.image"/>
+<h1>Name: {{selectedProduct?.title}}</h1>
+
+    <p>Price: {{selectedProduct?.price}}</p>
+    <p>Description: {{selectedProduct?.description}}</p>
+    <button [hidden] = "selectedProduct?.fav">Add to Favourite</button>
+  </div>
+
+</div>
+  
+  
+</div>
+</div>
