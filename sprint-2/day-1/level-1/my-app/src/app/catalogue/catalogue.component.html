@@ -1,4 +1,4 @@
-<div>
+<div style="width: 100%; padding: 20px;">
     <select [ngModel] = "selectedName" (ngModelChange)="sortByName($event)" name="sortbyname">
         <option value="">Sort By Name</option>
         <option value="asc">Ascending</option>
@@ -13,11 +13,12 @@
         <option value="">Filter By Category</option>
         <option value="men's clothing">Men's clothing</option>
         <option value="women's clothing">Women's clothing</option>
-        <option value="jewellery">Jewellery</option>
+        <option value="jewelery">Jewellery</option>
         <option value="electronics">Electronics</option>
     </select>
 </div>
-<div *ngFor="let product of products">
+<div style="width: 100%; padding: 40px; display: grid; grid-template-columns: repeat(3,1fr); margin: auto; column-gap: 10px; row-gap: 10px; gap: 10px;">
+<div style="margin-bottom: 10px; margin-right: 10px;" *ngFor="let product of products">
 <div style="width: 100%;">
     <img style="width: 100px; height: 100px;" [src]="product.image"/>
 <h1>Name: {{product.title}}</h1>
@@ -33,7 +34,7 @@
 
 <!-- Modal toggle -->
 
-<button (click)="openModal(product)" id="myBtn">Open Modal</button>
+<button  type="button" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900" (click)="openModal(product)" id="myBtn">Open Modal</button>
 
 <!-- The Modal -->
 <div id="myModal" [hidden]="!modalVisible" class="modal" >
@@ -52,5 +53,6 @@
 </div>
   
   
+</div>
 </div>
 </div>

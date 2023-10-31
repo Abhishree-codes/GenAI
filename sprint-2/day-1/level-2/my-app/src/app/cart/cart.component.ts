@@ -21,7 +21,7 @@ total = 0
     this.total = this.cartItems.reduce((prev,curr)=>{
       return prev + (curr.price * curr.quantity)
     },0)
-    this.total = parseFloat((123.456).toFixed(2)); 
+    this.total = parseFloat((this.total).toFixed(2)); 
   }
 
   deleteFromCart(id:number){
