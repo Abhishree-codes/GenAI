@@ -1,0 +1,82 @@
+<div class="container-fluid">
+
+<h1>    Registeration Form </h1>
+    <form novalidate (ngSubmit)="onSubmit()" #registrationForm="ngForm">
+        <div class="form-group">
+        <label for="name"> Name: </label>
+        <input type="text" 
+        class="form-control is-invalid"
+        [class.is-invalid]="name.invalid && (name.touched || name.dirty)"
+        minlength="3"
+        required   
+        name="name"
+        [(ngModel)] = user.name
+        #name = "ngModel"
+        />
+        <div *ngIf="name.invalid && (name.touched || name.dirty)">
+            <div *ngIf="name?.errors?.['required']">Name is Required</div>
+            <div *ngIf="name.errors?.['minlength']">  Name must be at least 3 characters long.</div>
+        </div>
+        </div>
+        <div class="form-group">
+        <label for="email">
+            Email:
+        </label>
+        <input
+        class="form-control"
+        type="email"
+        id="email"
+        name="email"
+        required
+        [(ngModel)]="user.email"
+        #email="ngModel"
+        />
+        <div *ngIf="email.invalid && (email.touched || email.dirty)">
+            <div *ngIf="email.errors?.['required']"> Email is required</div>
+            <div *ngIf="email.errors?.['email']">Invalid email format</div>
+        </div>
+        </div>
+        <div class="form-group">
+        <label>
+            Password:
+        </label>
+        <input
+        class="form-control"
+        type="password"
+        id="password"
+        name="password"
+        required
+        [(ngModel)]="user.password"
+        minlength="6"
+        #password="ngModel"
+        (input)="validatePassword(password.value)"
+        (blur)="validatePassword(password.value)"
+        (ngModelChange)="validatePassword(password.value)"
+        />
+        <div *ngIf="password.invalid && (password.dirty || password.touched)">
+            <div *ngIf="password.errors?.['required']">Password is required</div>
+            <div *ngIf="password.errors?.['minlength']">Password should be at least 6 characters long</div>
+            <div *ngIf="passwordError">Password should contain at least one uppercase letter, one lowercase letter, one digit, and one special character.</div>
+        </div>
+        </div>
+        <div class="form-group">
+        <label for="confirm">Confirm Password</label>
+        <input
+        class="form-control"
+        type="password"
+        id="confirm"
+        name="confirm"
+        (input)="validateConfirm(confirm.value)"
+  (ngModelChange)="validateConfirm(confirm.value)"
+        (blur)="validateConfirm(confirm.value)"
+        [(ngModel)]="user.confirm"
+        #confirm="ngModel"
+        />
+        <div *ngIf="confirmError && (confirm.dirty || confirm.touched)">
+            <div *ngIf="confirm.errors?.['required']">Please enter your password again</div>
+            <div *ngIf="confirmError">Passwords must match</div>
+        </div>
+</div>
+    <button class="btn btn-primary" [disabled]="registrationForm.form.invalid || confirmError || passwordError">Submit</button>
+    </form>
+</div>

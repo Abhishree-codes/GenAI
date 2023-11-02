@@ -1,0 +1,148 @@
+<div *ngIf="!submitted" class="container-fluid">
+<h1>    Registeration Form </h1>
+    <form novalidate (ngSubmit)="onSubmit()" #registrationForm="ngForm">
+        <div class="form-group">
+        <label for="name"> Name: </label>
+        <input type="text" 
+        class="form-control is-invalid"
+     
+        minlength="3"
+        required   
+        name="name"
+        [(ngModel)] = user.name
+        #name = "ngModel"
+        (input)="validateName(name.value)"
+        (blue)="validateName(name.value)"
+        (change)="validateName(name.value)"
+        />
+        <div style="color: red;" *ngIf="nameError || (name.invalid && (name.touched || name.dirty))">
+            <div *ngIf="name?.errors?.['required']">Name is Required</div>
+            <div *ngIf="name.errors?.['minlength']">  Name must be at least 3 characters long.</div>
+            <div *ngIf="nameError">Name isn't available</div>
+        </div>
+        </div>
+        <div class="form-group">
+        <label for="email">
+            Email:
+        </label>
+        <input
+        class="form-control"
+        type="email"
+        id="email"
+        name="email"
+        required
+        [(ngModel)]="user.email"
+        #email="ngModel"
+        />
+        <div style="color: red;" *ngIf="email.invalid && (email.touched || email.dirty)">
+            <div *ngIf="email.errors?.['required']"> Email is required</div>
+            <div *ngIf="email.errors?.['email']">Invalid email format</div>
+        </div>
+        </div>
+        <div class="form-group">
+        <label>
+            Password:
+        </label>
+        <input
+        class="form-control"
+        type="password"
+        id="password"
+        name="password"
+        required
+        [(ngModel)]="user.password"
+        minlength="6"
+        #password="ngModel"
+        (input)="validatePassword(password.value)"
+        (blur)="validatePassword(password.value)"
+        (ngModelChange)="validatePassword(password.value)"
+        />
+        <div style="color: red;" *ngIf="password.invalid && (password.dirty || password.touched)">
+            <div *ngIf="password.errors?.['required']">Password is required</div>
+            <div *ngIf="password.errors?.['minlength']">Password should be at least 6 characters long</div>
+            <div *ngIf="passwordError">Password should contain at least one uppercase letter, one lowercase letter, one digit, and one special character.</div>
+        </div>
+        </div>
+        <div class="form-group">
+        <label for="confirm">Confirm Password</label>
+        <input
+        class="form-control"
+        type="password"
+        id="confirm"
+        name="confirm"
+        (input)="validateConfirm(confirm.value)"
+  (ngModelChange)="validateConfirm(confirm.value)"
+        (blur)="validateConfirm(confirm.value)"
+        [(ngModel)]="user.confirm"
+        #confirm="ngModel"
+        />
+        <div style="color: red;" *ngIf="confirmError && (confirm.dirty || confirm.touched)">
+            <div *ngIf="confirm.errors?.['required']">Please enter your password again</div>
+            <div *ngIf="confirmError">Passwords must match</div>
+        </div>
+</div>
+<div class="form-group">
+<label>DOB</label>
+<input
+class="form-control"
+type="date"
+id="date"
+name="date"
+[(ngModel)]="user.date"
+#date="ngModel"
+required
+(input)="validateAge(date.value)"
+  (ngModelChange)="validateAge(date.value)"
+        (blur)="validateAge(date.value)"
+/>
+<div style="color: red;" *ngIf="ageError && (date.dirty || date.touched)">
+    <div *ngIf="date.errors?.['required']">Please select your birthdate</div>
+    <div *ngIf="ageError">You must be at least 18 years of age</div>
+</div>
+</div>
+<div class="form-group">
+    <label>Profile Picture (Optional):</label>
+    <input class="form-control" type="file" name="picture" accept="image/*" (change)="onFileSelected($event)" #picture="ngModel" [(ngModel)]="user.picture"/>
+</div>
+<div style="color: red;" *ngIf="pictureError && (picture.dirty || picture.touched)">
+    <div *ngIf="pictureError">Picture must be an image file</div>
+</div>
+<div class="form-group">
+    <label>Addresss (Optional):</label>
+    <textarea
+    class="form-control"
+    name="address"
+    [(ngModel)]="user.address"
+    >
+
+    </textarea>
+</div>
+<div class="form-group">
+
+    <label>Mobile Number:</label>
+    <div class="phone-input">
+    <input
+    type="tel"
+    name="phone"
+    class="form-control"
+    [(ngModel)]="user.phone"
+    #phone="ngModel"
+    (input) = "validatePhone(phone.value)"
+    (blur)="validatePhone(phone.value)"
+    /> 
+</div>
+    <div style="color: red;" *ngIf="phoneError && (phone.dirty || phone.touched)">
+        <div *ngIf="phoneError">Please enter a valid phone number of ten digits</div>
+    </div>
+</div>
+    <button class="btn btn-primary" [disabled]="registrationForm.form.invalid || confirmError || passwordError||ageError||pictureError||phoneError||nameError">Submit</button>
+    </form>
+</div>
+<div style="width: 50%;margin: auto; margin-top: 20px; text-align: center;" class="container-fluid" *ngIf="submitted">
+    <img [src]="user.picture ? user.picture : ''" alt="Profile Picture" />
+    <h1>{{user.name}}</h1>
+    <h6>{{user.email}}</h6>
+    <h6 *ngIf="user.phone">+91 {{user.phone}}</h6>
+    <h6>{{user.date}}</h6>
+    <h6 *ngIf="user.address">{{user.address}}</h6>
+    <button class="btn btn-primary" (click)="onEditClick()">Edit Details</button>
+</div>

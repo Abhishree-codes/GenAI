@@ -1,0 +1,18 @@
+.phone-input {
+    position: relative;
+  }
+  
+  .phone-input input {
+    padding-left: 50px; /* Adjust this value to match the length of the default prefix */
+    border: 1px solid #ccc; /* Add your desired input field styling here */
+    width: 100%;
+  }
+  
+  .phone-input::before {
+    content: "+91 | ";
+    position: absolute;
+    left: 10px; /* Adjust the left value to control the position of the prefix */
+    top: 7px; /* Adjust the top value to vertically center the prefix */
+    color: #676565; /* Set the color of the prefix */
+  }
+  
