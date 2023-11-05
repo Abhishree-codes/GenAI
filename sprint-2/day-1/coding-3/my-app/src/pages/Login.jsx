@@ -18,22 +18,27 @@ function Login() {
 
   const handleLogin=()=>{
     dispatch(loginReq({email,password})).then(()=>{
-      navigate(location.state,{replace:true})
+
+      navigate(location.state||"/notes",{replace:true})
+      console.log(location.state)
     })
   }
+
   const handleRegister=()=>{
     axios.post(`${baseURL}/users/register`,{email:newEmail,password:newPassword}).then((res)=>{
+        console.log(res)
       alert("registeration successful")
       setRegisterClick(false)
 
     }).catch((error)=>{
-      console.log(error)
+      alert("Registration failed. Please try again")
+      // console.log(error)
     })
   }
   return (
     <>
       {registerClick ? (
-        <Flex direction={"column"}>
+        <Flex direction={"column"} width={"40%"} margin={"auto"} gap={5}>
           <Input
           type="email"
           placeholder="enter email"
@@ -51,7 +56,7 @@ function Login() {
           <ChakraLink onClick={()=>{setRegisterClick(false)}}>Already a user? Login here</ChakraLink>
         </Flex>
       ) : (
-        <Flex direction={"column"}>
+        <Flex direction={"column"} width={"40%"} margin={"auto"} gap={5}>
           {" "}
           <Input
             type="email"

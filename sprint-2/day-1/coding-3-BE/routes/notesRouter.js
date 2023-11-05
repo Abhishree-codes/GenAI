@@ -22,7 +22,7 @@ notesRouter.get("/",authMiddleware, async (req,res)=>{
 
         const matchObject = {}
         matchObject.userID = req.body.userID
-        pipeline.push[{$match:matchObject},{$sort:{date: -1,  timestamp: -1 }}]
+        pipeline.push({$match:matchObject},{$sort:{date: -1,  timestamp: -1 }})
         const notes = await NotesModel.aggregate(pipeline)
         res.send(notes)
 

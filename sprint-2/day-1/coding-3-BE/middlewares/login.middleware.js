@@ -4,6 +4,7 @@ const bcrypt=require("bcrypt")
 const { UserModel } = require("../models/userModel")
 
 const loginMiddleware = async (req,res,next)=>{
+
     const {email,password} = req.body
     if(!email || ! password){
         return res.status(400).send({"error":"email or password missing"})
@@ -14,8 +15,8 @@ const loginMiddleware = async (req,res,next)=>{
         if(!isUser){
             return res.status(401).send({"error":"email not registered. Please register"})
         }
-        bcrypt.compare(password, hash, (err, result)=> {
-            if(!err){
+        bcrypt.compare(password, isUser.password, (err, result)=> {
+            if(err){
                return res.status(500).send({"error":"internal server error"})
             }
             if(!result){

@@ -3,6 +3,7 @@ const { UserModel } = require("../models/userModel")
 const bcrypt = require("bcrypt")
 const { loginMiddleware } = require("../middlewares/login.middleware")
 require("dotenv").config()
+const jwt = require("jsonwebtoken")
 
 const userRouter= express.Router()
 
@@ -23,6 +24,7 @@ userRouter.post("/register", async (req,res)=>{
                         }else{
                             const userToAdd= new UserModel({email,password:hash})
                             await userToAdd.save()
+                            res.send({"msg":"user added!"})
                         }  
                     } catch (error) {
                         console.log(error)
@@ -39,7 +41,8 @@ userRouter.post("/register", async (req,res)=>{
 })
 
 
-userRouter.get("/login",loginMiddleware, async (req,res)=>{
+userRouter.post("/login",loginMiddleware, async (req,res)=>{
+
   try {
     const token= jwt.sign({
         userID: req.body.userID
