@@ -1,0 +1,185 @@
+
+
+<div *ngIf="!submitted && register" class="container-fluid" style="width: 50%; padding: 10px;">
+    <h1 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">    Registeration Form </h1>
+        <form novalidate (ngSubmit)="onSubmit()" #registrationForm="ngForm">
+            <div class="form-group mb-6">
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> Name: </label>
+            <input type="text" 
+            class="form-control is-invalid bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+         
+            minlength="3"
+            required   
+            name="name"
+            [(ngModel)] = user.name
+            #name = "ngModel"
+            (input)="validateName(name.value)"
+            (blue)="validateName(name.value)"
+            (change)="validateName(name.value)"
+            />
+            <div style="color: red;" *ngIf="nameError || (name.invalid && (name.touched || name.dirty))">
+                <div *ngIf="name?.errors?.['required']">Name is Required</div>
+                <div *ngIf="name.errors?.['minlength']">  Name must be at least 3 characters long.</div>
+                <div *ngIf="nameError">Name isn't available</div>
+            </div>
+            </div>
+            <div class="form-group mb-6">
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                Email:
+            </label>
+            <input
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            type="email"
+            id="email"
+            name="email"
+            required
+            [(ngModel)]="user.email"
+            #email="ngModel"
+            />
+            <div style="color: red;" *ngIf="email.invalid && (email.touched || email.dirty)">
+                <div *ngIf="email.errors?.['required']"> Email is required</div>
+                <div *ngIf="email.errors?.['email']">Invalid email format</div>
+            </div>
+            </div>
+            <div class="form-group mb-6">
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                Password:
+            </label>
+            <input
+            class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            type="password"
+            id="password"
+            name="password"
+            required
+            [(ngModel)]="user.password"
+            minlength="6"
+            #password="ngModel"
+            (input)="validatePassword(password.value)"
+            (blur)="validatePassword(password.value)"
+            (ngModelChange)="validatePassword(password.value)"
+            />
+            <div style="color: red;" *ngIf="password.invalid && (password.dirty || password.touched)">
+                <div *ngIf="password.errors?.['required']">Password is required</div>
+                <div *ngIf="password.errors?.['minlength']">Password should be at least 6 characters long</div>
+                <div *ngIf="passwordError">Password should contain at least one uppercase letter, one lowercase letter, one digit, and one special character.</div>
+            </div>
+            </div>
+            <div class="form-group mb-6">
+            <label for="confirm" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Password</label>
+            <input
+            class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            type="password"
+            id="confirm"
+            name="confirm"
+            (input)="validateConfirm(confirm.value)"
+      (ngModelChange)="validateConfirm(confirm.value)"
+            (blur)="validateConfirm(confirm.value)"
+            [(ngModel)]="user.confirm"
+            #confirm="ngModel"
+            />
+            <div style="color: red;" *ngIf="confirmError && (confirm.dirty || confirm.touched)">
+                <div *ngIf="confirm.errors?.['required']">Please enter your password again</div>
+                <div *ngIf="confirmError">Passwords must match</div>
+            </div>
+    </div>
+    <div class="form-group mb-6">
+    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">DOB</label>
+    <input
+    class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+    type="date"
+    id="date"
+    name="date"
+    [(ngModel)]="user.date"
+    #date="ngModel"
+    required
+    (input)="validateAge(date.value)"
+      (ngModelChange)="validateAge(date.value)"
+            (blur)="validateAge(date.value)"
+    />
+    <div style="color: red;" *ngIf="ageError && (date.dirty || date.touched)">
+        <div *ngIf="date.errors?.['required']">Please select your birthdate</div>
+        <div *ngIf="ageError">You must be at least 18 years of age</div>
+    </div>
+    </div>
+    <div class="form-group mb-6">
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Profile Picture (Optional):</label>
+        <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file" name="picture" accept="image/*" (change)="onFileSelected($event)" #picture="ngModel" [(ngModel)]="user.picture"/>
+    </div>
+    <div style="color: red;" *ngIf="pictureError && (picture.dirty || picture.touched)">
+        <div *ngIf="pictureError">Picture must be an image file</div>
+    </div>
+    <div class="form-group mb-6">
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Addresss (Optional):</label>
+        <textarea
+        class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        name="address"
+        [(ngModel)]="user.address"
+        >
+    
+        </textarea>
+    </div>
+    <div class="form-group mb-6">
+    
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mobile Number:</label>
+        <div class="phone-input">
+        <input
+        type="tel"
+        name="phone"
+        class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        [(ngModel)]="user.phone"
+        #phone="ngModel"
+        (input) = "validatePhone(phone.value)"
+        (blur)="validatePhone(phone.value)"
+        /> 
+    </div>
+        <div style="color: red;" *ngIf="phoneError && (phone.dirty || phone.touched)">
+            <div *ngIf="phoneError">Please enter a valid phone number of ten digits</div>
+        </div>
+    </div>
+        <button class="btn btn-primary text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mr-5" type="submit" [disabled]="registrationForm.form.invalid || confirmError || passwordError||ageError||pictureError||phoneError||nameError">Submit</button>
+        <a class="btn btn-primary" (click)="showLogin()">Already registered? Login here</a>
+        </form>
+    </div>
+
+    <div *ngIf="login" style="width: 50%; padding: 10px;">
+        <form novalidate (ngSubmit)="onSubmitLogin()" #loginForm="ngForm">
+            <div class="form-group mb-6">
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="email">
+                Email:
+            </label>
+            <input
+            class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            type="email"
+            id="email"
+            name="email"
+            required
+            [(ngModel)]="userLogin.email"
+            #loginEmail="ngModel"
+            />
+            <div style="color: red;" *ngIf="loginEmail.invalid && (loginEmail.touched || loginEmail.dirty)">
+                <div *ngIf="loginEmail.errors?.['required']"> Email is required</div>
+                <div *ngIf="loginEmail.errors?.['email']">Invalid email format</div>
+            </div>
+            </div>
+            <div class="form-group mb-6">
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                Password:
+            </label>
+            <input
+            class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            type="password"
+            id="password"
+            name="password"
+            required
+            [(ngModel)]="userLogin.password"
+            #loginPass="ngModel"
+            />
+            <div style="color: red;" *ngIf="loginPass.invalid && (loginPass.dirty || loginPass.touched)">
+                <div *ngIf="loginPass.errors?.['required']">Password is required</div>
+            </div>
+            </div>
+        <button class="btn btn-primary text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mr-5" type="submit" [disabled]="loginForm.form.invalid">Submit</button>
+        <a class="btn btn-primary" (click)="showRegister()">Not a user? Sign Up here</a>
+        </form>
+    </div>
+    

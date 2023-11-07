@@ -1,0 +1,234 @@
+
+<div style="width: 100%; padding: 40px">
+    <div *ngIf="!editing" class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class="flex justify-end px-4 pt-4">
+            <button (click)="onEditClick()" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
+               Edit
+            </button>
+          
+        </div>
+        <div class="flex flex-col items-center pb-10" >
+            <img class="w-24 h-24 mb-3 rounded-full shadow-lg" [src]="userData.picture" alt="User image"/>
+          
+            <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{userData.name}}</h5>
+            <span class="text-sm text-gray-500 dark:text-gray-400">{{userData.email}}</span>
+            <span class="text-sm text-gray-500 dark:text-gray-400">{{userData.address}}</span>
+            <span class="text-sm text-gray-500 dark:text-gray-400">{{userData.date}}</span> 
+            <span class="text-sm text-gray-500 dark:text-gray-400">{{userData.phone}}</span>
+        </div>
+    </div>
+    </div>
+    
+    <!-- testing editing  -->
+    <div *ngIf="editing" style="margin-left: 40px;" class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class="flex flex-col items-center pb-10 mt-10" >
+        <form novalidate (ngSubmit)="onSubmit()" #registrationForm="ngForm">
+            <div class="form-group mb-6">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Profile Picture (Optional):</label>
+                <input class="form-control block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file" name="picture" accept="image/*" (change)="onFileSelected($event)" #picture="ngModel" [(ngModel)]="formData.picture"/>
+            </div>
+            <div style="color: red;" *ngIf="pictureError && (picture.dirty || picture.touched)">
+                <div *ngIf="pictureError">Picture must be an image file</div>
+            </div>
+            <div class="form-group relative z-0 w-full mb-6 group">
+               
+                <input type="text" 
+                class="form-control is-invalid block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+             
+                minlength="3"
+                required   
+                name="floating_name" id="floating_name"
+                [(ngModel)] = formData.name
+                #name = "ngModel"
+                (input)="validateName(name.value)"
+                (blue)="validateName(name.value)"
+                (change)="validateName(name.value)"
+                />
+                <label for="floating_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Name</label>
+                <div style="color: red;" *ngIf="nameError || (name.invalid && (name.touched || name.dirty))">
+                    <div *ngIf="name?.errors?.['required']">Name is Required</div>
+                    <div *ngIf="name.errors?.['minlength']">  Name must be at least 3 characters long.</div>
+                    <div *ngIf="nameError">Name isn't available</div>
+                </div>
+                </div>
+    
+                <div class="form-group elative z-0 w-full mb-6 group">
+                   
+                    <input
+                    class="form-control block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    type="email"
+                    id="floating_email"
+                    name="floating_email"
+                    required
+                    [(ngModel)]="formData.email"
+                    #email="ngModel"
+                    />
+                    <label for="email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email</label>
+                    <div style="color: red;" *ngIf="email.invalid && (email.touched || email.dirty)">
+                        <div *ngIf="email.errors?.['required']"> Email is required</div>
+                        <div *ngIf="email.errors?.['email']">Invalid email format</div>
+                    </div>
+                    </div>
+            <div class="form-group elative z-0 w-full mb-6 group">
+            
+            <input
+            class="form-control block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            type="date"
+            id="floating_date"
+            name="floating_date"
+            [(ngModel)]="formData.date"
+            #date="ngModel"
+            required
+            (input)="validateAge(date.value)"
+              (ngModelChange)="validateAge(date.value)"
+                    (blur)="validateAge(date.value)"
+            />
+            <label for="floating_date" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">DOB:</label>
+            <div style="color: red;" *ngIf="ageError && (date.dirty || date.touched)">
+                <div *ngIf="date.errors?.['required']">Please select your birthdate</div>
+                <div *ngIf="ageError">You must be at least 18 years of age</div>
+            </div>
+            </div>
+           
+            <div class="form-group elative z-0 w-full mb-6 group">
+             
+                <textarea
+                class="form-control block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                name="floating_add"
+                [(ngModel)]="formData.address"
+                >
+            
+                </textarea>
+                <label for="floating_add" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Address (Optional)</label>
+            </div>
+            <div class="form-group relative z-0 w-full mb-6 group">
+            
+                <label>Mobile Number:</label>
+                <div class="phone-input">
+                <input
+                type="tel"
+                name="floating_phone"
+                class="form-control block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                [(ngModel)]="formData.phone"
+                #phone="ngModel"
+                (input) = "validatePhone(phone.value)"
+                (blur)="validatePhone(phone.value)"
+                /> 
+                <label for="floating_phone" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone</label>
+            </div>
+                <div style="color: red;" *ngIf="phoneError && (phone.dirty || phone.touched)">
+                    <div *ngIf="phoneError">Please enter a valid phone number of ten digits</div>
+                </div>
+            </div>
+    
+    
+            <button [disabled]="registrationForm.form.invalid||phoneError||nameError||pictureError||ageError" type="submit" class="submit text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save</button>
+        </form>
+          
+    </div>
+    </div>
+    
+    
+    <!-- <div *ngIf="editing" class="container-fluid">
+            <form novalidate (ngSubmit)="onSubmit()" #registrationForm="ngForm">
+              
+                <div class="form-group">
+                <label for="email">
+                    Email:
+                </label>
+                <input
+                class="form-control"
+                type="email"
+                id="email"
+                name="email"
+                required
+                [(ngModel)]="formData.email"
+                #email="ngModel"
+                />
+                <div style="color: red;" *ngIf="email.invalid && (email.touched || email.dirty)">
+                    <div *ngIf="email.errors?.['required']"> Email is required</div>
+                    <div *ngIf="email.errors?.['email']">Invalid email format</div>
+                </div>
+                </div>
+        <div class="form-group">
+        <label>DOB</label>
+        <input
+        class="form-control"
+        type="date"
+        id="date"
+        name="date"
+        [(ngModel)]="formData.date"
+        #date="ngModel"
+        required
+        (input)="validateAge(date.value)"
+          (ngModelChange)="validateAge(date.value)"
+                (blur)="validateAge(date.value)"
+        />
+        <div style="color: red;" *ngIf="ageError && (date.dirty || date.touched)">
+            <div *ngIf="date.errors?.['required']">Please select your birthdate</div>
+            <div *ngIf="ageError">You must be at least 18 years of age</div>
+        </div>
+        </div>
+       
+        <div class="form-group">
+            <label>Addresss (Optional):</label>
+            <textarea
+            class="form-control"
+            name="address"
+            [(ngModel)]="formData.address"
+            >
+        
+            </textarea>
+        </div>
+        <div class="form-group">
+        
+            <label>Mobile Number:</label>
+            <div class="phone-input">
+            <input
+            type="tel"
+            name="phone"
+            class="form-control"
+            [(ngModel)]="formData.phone"
+            #phone="ngModel"
+            (input) = "validatePhone(phone.value)"
+            (blur)="validatePhone(phone.value)"
+            /> 
+        </div>
+            <div style="color: red;" *ngIf="phoneError && (phone.dirty || phone.touched)">
+                <div *ngIf="phoneError">Please enter a valid phone number of ten digits</div>
+            </div>
+        </div>
+            <button class="btn btn-primary" type="submit" [disabled]="registrationForm.form.invalid||phoneError||nameError||pictureError||ageError">Submit</button>
+            </form>
+        </div> -->
+    
+    
+    
+    <div style="width: 100%;" style="display: flex;padding: 40px; flex-direction: column;"> 
+        <h1 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Order History:</h1>
+        <div style="display: flex; flex-direction: column; width: 100%; ">
+        
+        <div *ngFor="let order of userData?.history" class="p-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" style="width: 50%; margin-bottom: 10px;">
+            <div>
+                <h5>Order ID: {{order.id}}</h5>
+                <h5> Date: {{order?.date}}</h5>
+                <h5>Total Amount: ₹{{order?.total}}</h5>
+                <div style="display: flex; align-items: center; width: 100%; justify-content: space-between;" *ngFor="let orderItem of order.data">
+                    <div style="display: flex; flex-direction: column;">
+                    <h1>{{orderItem?.title}}</h1>
+                    <h1>Quantity: {{orderItem?.quantity}}</h1>
+                </div>
+                    <div>
+                        <img style="width: 150px; height: 170px;" class="p-8 rounded-t-lg" [src]="orderItem?.image" [alt]="orderItem?.title" />
+                    </div>
+                </div>
+        </div>
+        
+        </div>
+        
+        </div>
+      
+        
+        </div>
+    
+    
