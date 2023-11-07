@@ -1,0 +1,18 @@
+<form style="display: flex; flex-direction: column; width: 30%; margin: auto; height: 200px; justify-content: space-evenly;" (ngSubmit)="handleSubmit()" #taskForm="ngForm">
+    <input
+    type="text"
+    placeholder="enter title"
+    required
+    [(ngModel)]="taskToAdd.title"
+    #title="ngModel"
+    name="title"
+    />
+    <input
+    type="text"
+    placeholder="enter description"
+    required
+    [(ngModel)]="taskToAdd.description"
+    name="description"
+    />
+    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add Task</button>
+</form>

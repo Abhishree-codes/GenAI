@@ -1,0 +1,32 @@
+
+
+<div class="relative overflow-x-auto mt-10">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                   Title
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Action
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"  *ngFor="let task of tasks">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{task?.title}}
+                </th>
+                <td class="px-6 py-4">
+                    <button (click)="handleDelete(task.id)">Delete Task</button>
+                </td>
+                <td class="px-6 py-4">
+                    <button (click)="handleViewDetails(task.id)">View Details</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

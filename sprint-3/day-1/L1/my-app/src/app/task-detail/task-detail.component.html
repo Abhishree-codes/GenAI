@@ -1,0 +1,12 @@
+<!-- <div>
+    <h1>{{task.title}}</h1>
+    <p>Description: {{task.description}}</p>
+    <p>Status: {{task.completed ? "completed":"pending"}}</p>
+</div> -->
+<div style="width: 100%; padding: 40px;">
+<div class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+    <h5 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{task.title}}</h5>
+    <p class="font-normal text-gray-700 dark:text-gray-400 mb-1">Description: {{task.description}}</p>
+    <p class="font-normal text-gray-700 dark:text-gray-400">Status: {{task.completed ? "completed":"pending"}}</p>
+</div>
+</div>
