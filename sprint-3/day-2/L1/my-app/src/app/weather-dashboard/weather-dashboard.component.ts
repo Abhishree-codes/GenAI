@@ -123,7 +123,7 @@ export class WeatherDashboardComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   changeLocation(value:string){
-this.http.get(`http://api.openweathermap.org/geo/1.0/direct?q=${value}&limit=1&appid=${environment.apiKey}`)
+this.http.get(`https://api.openweathermap.org/geo/1.0/direct?q=${value}&limit=1&appid=${environment.apiKey}`)
 .subscribe((data: any) => {
   console.log(data)
 this.lat = data[0].lat
