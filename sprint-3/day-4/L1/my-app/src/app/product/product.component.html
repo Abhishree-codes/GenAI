@@ -1,0 +1,23 @@
+<div style="width: 90%; margin: auto; padding: 10px;"  class="grid grid-cols-2 md:grid-cols-3 gap-4">
+    <div *ngFor="let product of products$" class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col justify-between product-cont">
+        <a href="#">
+            <img style="width: 150px; height: 170px;" class="p-8 rounded-t-lg" [src]="product.image" [alt]="product.title" />
+        </a>
+        <div class="px-5 pb-5">
+            <a href="#">
+                <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{{[product.title]}}</h5>
+            </a>
+            <div class="flex items-center mt-2.5 mb-5">
+                <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">{{product.rating.rate}}</span>
+            </div>
+            <div class="flex items-center justify-between">
+                <span class="text-3xl font-bold text-gray-900 dark:text-white">₹{{product.price}}</span>
+            </div>
+            <div class="flex items-center justify-between mt-5">
+                <!-- <button type="button" (click)="redirectToView(product.id)" data-modal-target="product.id" data-modal-toggle="product.id" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">View Details</button> -->
+                <button type="button" (click)="addToCart(product)" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add To Cart</button>
+                <a type="button" [routerLink]="['comments',product.id,'view']" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">View Comments</a>             
+            </div>
+        </div>
+    </div>
+</div>
